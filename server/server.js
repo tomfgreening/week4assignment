@@ -21,4 +21,13 @@ app.get("/", (req, res) => {
 
 import pg from "pg";
 import dotenv from "dotenv";
-dotenv.config()
+dotenv.config();
+// I am prepping my EXPRESS server to interact with and write SQL queries.
+
+const dbConnectionString = process.env.DATABASE_URL;
+// I am connecting my SUPABASE url from the env file (env file is where I am putting sensitive information like the password to my SUPABASE database)
+
+const bd = pg.Pool({
+  connectionString: dbConnectionString,
+});
+// I am setting up a database POOL properly connect my EXPRESS server and SUPABASE database.
