@@ -17,7 +17,7 @@ app.listen(8080, () => {
 app.get("/", (req, res) => {
   res.json({ message: "This is the route of the root!" });
 });
-// I am getting the data from the end point / at local port 8080 and displaying it.
+// I am getting the data from the end point / at local port 8080 and displaying it.This is the root route.
 
 import pg from "pg";
 import dotenv from "dotenv";
