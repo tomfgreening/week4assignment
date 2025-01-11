@@ -27,7 +27,15 @@ dotenv.config();
 const dbConnectionString = process.env.DATABASE_URL;
 // I am connecting my SUPABASE url from the env file (env file is where I am putting sensitive information like the password to my SUPABASE database)
 
-const bd = pg.Pool({
+const db = new pg.Pool({
   connectionString: dbConnectionString,
 });
 // I am setting up a database POOL properly connect my EXPRESS server and SUPABASE database.
+
+app.get("/juicyjake", (req, res) => {
+  // I am making an /endpoint that will READ the data from my SUPABASE database and calling it juicyjake.
+  const query = db.query("SELECT * FROM juicyjakesguestbook");
+  // I am asking for the data from the table called juicyjakesguestbook from my SUPABASE database. * means all the data from x.
+  res.json(query);
+  // I want the data response to in a form that the sever will be able to understand. JSON.
+});
