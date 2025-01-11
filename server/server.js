@@ -32,10 +32,10 @@ const db = new pg.Pool({
 });
 // I am setting up a database POOL properly connect my EXPRESS server and SUPABASE database.
 
-app.get("/juicyjake", (req, res) => {
+app.get("/juicyjake", async (req, res) => {
   // I am making an /endpoint that will READ the data from my SUPABASE database and calling it juicyjake.
-  const query = db.query("SELECT * FROM juicyjakesguestbook");
+  const query = await db.query("SELECT * FROM juicyjakesguestbook");
   // I am asking for the data from the table called juicyjakesguestbook from my SUPABASE database. * means all the data from x.
-  res.json(query);
+  await res.json(query.rows);
   // I want the data response to in a form that the sever will be able to understand. JSON.
 });
