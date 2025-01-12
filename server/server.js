@@ -39,3 +39,13 @@ app.get("/juicyjake", async (req, res) => {
   await res.json(query.rows);
   // I want the data response to in a form that the sever will be able to understand. JSON.
 });
+
+app.post("/new-data", async (req, res) => {
+  const data = req.body.formValues;
+  const query = await db.query(
+    `INSERT INTO table_name (col, col2, col3) VALUES ($1, $2, $3)`,
+    [data.input1, data.input2, data.input3]
+  );
+  await res.json(query.rows);
+});
+// This is some of Manny's code from the walking skeleton. I think this is for adding new data into the data base from the form on the client. I will have to come back and edit this when I have made the form in the client.
